@@ -1,1 +1,2 @@
-# Collisions - A bunch of demos on basic physics concepts created in python
+# Physics Demos
+A bunch of simple physics simulations/demos coded in python. Includes basic concepts in mechanics like motion, collisions etc.
