@@ -29,10 +29,9 @@ class Projectile(object):
         self.y = 400
         self.vel = vel
         self.angle = angle
-        self.radius = 10
+        self.radius = 12
         self.x_vel = math.cos(self.angle)*self.vel
         self.y_vel = math.sin(self.angle)*self.vel
-        self.gravity = 9.81
 
     # def physics(self):
     #     self.displacementx = self.x_vel*self.time
@@ -44,7 +43,7 @@ class Projectile(object):
         pygame.draw.circle(screen,black,(self.x,self.y),self.radius)
 
 def Physics(time,x, y, xvel, yvel):
-    gravity = 10
+    gravity = 5
     disp_x = time * xvel
     disp_y = yvel*time - 0.5*(gravity)*(time**2)
     pathx = x + disp_x
@@ -60,24 +59,25 @@ def draw():
 
 #Main Loop Variables/objects
 run = True
-Ball = Projectile(7,math.pi/3)
+Ball = Projectile(5,math.pi/3.01)
 
 while run:
-    clock.tick(60)
+    clock.tick(100)
     system_time = pygame.time.get_ticks()/1500
-
     position = list(Physics(system_time, Ball.x, Ball.y, Ball.x_vel, Ball.y_vel))
     Ball.x = position[0]
     Ball.y = position[1]
 
     if Ball.y > 495:
-        pygame.time.delay(10000)
+        Ball.y = 495
+        Ball.x_vel = 0
+        # pygame.time.delay(10000)
 
     for event in pygame.event.get():
-        if event == pygame.QUIT:
+        if event.type == pygame.QUIT:
             run = False
-        if event == pygame.K_2:
-            print("additional keyboard functionality can be added")
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            print("olla")
 
     draw()
 
